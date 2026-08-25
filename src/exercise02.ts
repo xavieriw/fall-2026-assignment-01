@@ -1,3 +1,3 @@
 export function transcribeDNA(dna: string): string {
-  return '';
+  return 'Wubba Dubba';
 }
