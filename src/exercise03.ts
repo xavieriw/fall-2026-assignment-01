@@ -1,5 +1,5 @@
 export function getInventoryValue(
   inventory: Array<[string, number, number]>,
 ): number {
-  return 0;
+  return inventory.reduce((total,[,quantity,pricePerUnit]) => total + quantity * pricePerUnit, 0);
 }
