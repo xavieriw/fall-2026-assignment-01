@@ -1,13 +1,17 @@
-export type AdminUser = {};
+export type AdminUser = {
+  adminId: string;
+  permissions: string[];
+};
 
-export type GuestUser = {};
+export type GuestUser = {
+  guestToken: string;
+  expiresAt: Date;
+};
 
 export function isAdmin(user: AdminUser | GuestUser): user is AdminUser {
-  return false;
+  return 'adminId' in user && Array.isArray((user as AdminUser).permissions);
 }
 
-export function extractAdmins(
-  users: Array<AdminUser | GuestUser>,
-): AdminUser[] {
-  return [];
+export function extractAdmins(users: Array<AdminUser | GuestUser>): AdminUser[] {
+  return users.filter(isAdmin);
 }
